@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌曲選擇</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>選擇您喜歡的歌手</h1>
+        <form id="votingForm">
+            <label>
+                <input type="checkbox" name="artist" value="周杰倫"> 周杰倫
+            </label><br>
+            <label>
+                <input type="checkbox" name="artist" value="蔡依林"> 蔡依林
+            </label><br>
+            <label>
+                <input type="checkbox" name="artist" value="五月天"> 五月天
+            </label><br>
+            <label>
+                <input type="checkbox" name="artist" value="林俊傑"> 林俊傑
+            </label><br>
+            <label>
+                <input type="checkbox" name="artist" value="陳奕迅"> 陳奕迅
+            </label><br>
+            <button type="button" onclick="submitVote()">提交選擇</button>
+        </form>
+    </div>
+
+    <script>
+        function submitVote() {
+            const checkboxes = document.querySelectorAll('input[name="artist"]:checked');
+            let selectedArtists = [];
+            checkboxes.forEach((checkbox) => {
+                selectedArtists.push(checkbox.value);
+            });
+
+            if (selectedArtists.length > 0) {
+                alert("您選擇的藝人: " + selectedArtists.join(", "));
+                // 跳轉到謝謝頁面
+                window.location.href = "thank_you.html?artists=" + encodeURIComponent(selectedArtists.join(", "));
+            } else {
+                alert("請至少選擇一位藝人！");
+            }
+        }
+    </script>
+</body>
+</html>
